@@ -11,12 +11,9 @@ const contactSchema = yup.object().shape({
   message: yup.string().required('Message is required'),
 });
 const createInq = async (req, res) => {
-    
   try {
     const { name, industry,email,phone,message } = req.body;
      await contactSchema.validate(req.body, { abortEarly: false });
-  
-     
 
     const contact = await Inquiry.create({
       name,
@@ -31,17 +28,14 @@ const createInq = async (req, res) => {
           port: 587,
           secure: false, // use SSL
           auth: {
-            user: process.env.EMAIL,
+            user: process.env.SERVERNAME,
             pass: process.env.PASSWORD,
           }
         });
-        console.log(transporter);
-
-   
         const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
 
         const mailOptions = {
-          from: process.env.EMAIL,  // Your Gmail address
+          from: 'info@quantumcubix.com',  // Your Gmail address
           subject: 'Contact Us',
           html: `
             <b>Hi ${capitalized},</b>

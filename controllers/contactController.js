@@ -43,13 +43,13 @@ const createContactMessage = async (req, res) => {
           port: 587,
           secure: false, // use SSL
           auth: {
-            user: process.env.EMAIL,
+            user: process.env.SERVERNAME,
             pass: process.env.PASSWORD,
           }
         });
         const capitalized = first_name.charAt(0).toUpperCase() + first_name.slice(1);
         const mailOptions = {
-          from: process.env.EMAIL,  // Your Gmail address
+          from: 'info@quantumcubix.com',  // Your Gmail address
           subject: 'Contact Us',
           html: `
             <b>Hi ${capitalized} ${last_name},</b>
